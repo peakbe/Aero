@@ -1,29 +1,75 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Météo & Trafic Aérien - EBLG/EBCI</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EBLG – Dashboard Temps Réel</title>
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <h1>Météo & Trafic Aérien</h1>
-    <div class="airport-container">
-        <div class="airport" id="eblg">
-            <h2>Liège (EBLG)</h2>
-            <div class="weather"></div>
-            <div class="runway"></div>
-            <div class="flights"></div>
-            <div class="sonometers"></div>
-        </div>
-        <div class="airport" id="ebci">
-            <h2>Charleroi (EBCI)</h2>
-            <div class="weather"></div>
-            <div class="runway"></div>
-            <div class="flights"></div>
-            <div class="sonometers"></div>
-        </div>
+
+  <aside class="sidebar">
+    <h1>EBLG – Liège</h1>
+
+    <div class="card" id="weather">
+      <h2>Météo (METAR/TAF)</h2>
+      <div class="loading">Chargement...</div>
     </div>
-    <script src="script.js"></script>
+
+    <div class="card" id="aircrafts">
+      <h2>Trafic AirLabs</h2>
+      <div class="legend">
+        <span><i class="dot dot-arr"></i>Départs (orange)</span>
+        <span><i class="dot dot-arrv"></i>Arrivées (bleu)</span>
+        <span><i class="dot dot-ovf"></i>Survols (violet)</span>
+        <span><i class="dot dot-son"></i>Sonomètres (bleu foncé)</span>
+      </div>
+      <div class="lists">
+        <div>
+          <h3>Départs</h3>
+          <ul id="list-deps"></ul>
+        </div>
+        <div>
+          <h3>Arrivées</h3>
+          <ul id="list-arrs"></ul>
+        </div>
+        <div>
+          <h3>Survols (≈50 km)</h3>
+          <ul id="list-over"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="noise">
+      <h2>Sonomètres</h2>
+      <ul id="noise-list"></ul>
+    </div>
+
+    <footer>
+      <button id="toggleTheme" title="Basculer le thème">🌓</button>
+    </footer>
+  </aside>
+
+  <div id="map"></div>
+
+  <!-- Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+
+  <!-- Config + App -->
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
